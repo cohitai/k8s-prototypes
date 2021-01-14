@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: blzapiapp-lets-encrypt-prod
+spec:
+  secretName: blzapiapp-lets-encrypt-prod-tls
+  dnsNames:
+  - kubeblzapp.ml
+  - www.kubeblzapp.ml
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
