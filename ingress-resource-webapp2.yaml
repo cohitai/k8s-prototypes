@@ -5,17 +5,16 @@ metadata:
   namespace: webapp2
   annotations:
     kubernetes.io/ingress.global-static-ip-name: "web2-static-ip"
-    cert-manager.io/clusterissuer: letsencrypt-prod   
-    certmanager.k8s.io/acme-challenge-type: http01
+    #cert-manager.io/clusterissuer: letsencrypt-prod   
+    #certmanager.k8s.io/acme-challenge-type: http01
 spec:
   tls:
   - hosts:
     - kubeblzapp.ml
     - www.kubeblzapp.ml
-    secretName: letsencrypt-prod-tls
+    secretName: blzapiapp-lets-encrypt-prod-tls
 
   rules:
-
   - host: kubeblzapp.ml
     http:
       paths:
