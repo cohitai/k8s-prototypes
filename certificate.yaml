@@ -6,7 +6,8 @@ metadata:
 spec:
   dnsNames:
     - kubeblzapp.ml
-  secretName: blzapiapp-lets-encrypt-prod-tls
+    - www.kubeblzapp.ml
+  secretName: webapp2-tls
   issuerRef:
-    name: letsencrypt-prod-cluster-issuer
-    kind: ClusterIssuer
+    name: prod-issuer
+    kind: Issuer
