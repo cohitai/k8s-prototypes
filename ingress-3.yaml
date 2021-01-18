@@ -9,7 +9,6 @@ spec:
   tls:
   - hosts:
     - kube-3.ml
-    ##
     - www.kube-3.ml
     secretName: webapp3-tls
   rules:
