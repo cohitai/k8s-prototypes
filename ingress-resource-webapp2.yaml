@@ -30,11 +30,6 @@ spec:
           servicePort: 80     
   
 
-      #- path: /.well-known
-      #  backend:
-      #    serviceName: letsencrypt
-      #    servicePort: 80
-
 
 
 
