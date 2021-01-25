@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejsapi-deployment
+  namespace: nodejsapi
+  labels:
+    app: nodejsapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nodejsapi
+  template:
+    metadata:
+      labels:
+        app: nodejsapi
+    spec:
+      containers:
+      - name: nodejsapi
+        image: eu.gcr.io/premium-origin-233501/nodejsapp:latest
+        ports:
+        - containerPort: 80
+          protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodejsapi-service
+  labels:
+    app: nodejsapi
+  namespace: nodejsapi
+spec:
+  selector:
+    app: nodejsapi
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: NodePort

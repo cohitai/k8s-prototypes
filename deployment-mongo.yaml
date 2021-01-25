@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mong-deployment
+  namespace: mong
+  labels:
+    app: mong
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mong
+  template:
+    metadata:
+      labels:
+        app: mong
+    spec:
+      containers:
+      - name: mong
+        image: eu.gcr.io/premium-origin-233501/liv2mong:tag1
+        ports:
+        - containerPort: 80
+          protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mong-service
+  labels:
+    app: mong
+  namespace: mong
+spec:
+  selector:
+    app: mong
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: NodePort
