@@ -2,17 +2,16 @@ apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   annotations:
-    #kubernetes.io/ingress.class: "gce"
-    kubernetes.io/ingress.global-static-ip-name: "blz-cluster-ip"
+    kubernetes.io/ingress.global-static-ip-name: "cluster-xyz-static-ip-nodjeapi"
   name: blzcluster-nodejs-api
 spec:
   tls:
   - hosts:
-    - blzclusterapi.ml
-    - www.blzclusterapi.ml
+    - apicluster-xyz.tk
+    - www.apicluster-xyz.tk
     secretName: blzcluster-nodejs-api-tls
   rules:
-  - host: blzclusterapi.ml
+  - host: apicluster-xyz.tk
     http:
       paths:
       #- path: /
@@ -20,7 +19,7 @@ spec:
           serviceName: nodejsapi-service
           servicePort: 80
 
-  - host: www.blzclusterapi.ml
+  - host: www.apicluster-xyz.tk
     http:
       paths:
       #- path: /
