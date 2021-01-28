@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: "djangocms-static-ip"
+  name: djangocms-app
+spec:
+  tls:
+  - hosts:
+    - djangocms4blz.ml
+    - www.djangocms4blz.ml
+    secretName: djangocms-app-tls
+  rules:
+  - host: djangocms4blz.ml
+    http:
+      paths:
+      #- path: /
+      - backend: 
+          serviceName: djangocms-service
+          servicePort: 80
+
+  - host: www.djangocms4blz.ml
+    http:
+      paths:
+      #- path: /
+      -  backend: 
+          serviceName: djangocms-service
+          servicePort: 80

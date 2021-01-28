@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: djangocms-deployment
+  namespace: djangocms
+  labels:
+    app: djangocms
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: djangocms
+  template:
+    metadata:
+      labels:
+        app: djangocms
+    spec:
+      containers:
+      - name: djangocms
+        image: eu.gcr.io/premium-origin-233501/djangocms
+        ports:
+        - containerPort: 80
+          protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: djangocms-service
+  labels:
+    app: djangocms
+  namespace: djangocms
+spec:
+  selector:
+    app: djangocms
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8000
+  type: NodePort
