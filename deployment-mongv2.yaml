@@ -1,39 +1,39 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: djangocms-deployment
-  namespace: djangocms
+  name: mong-deployment-v2
+  namespace: mong
   labels:
-    app: djangocms
+    app: mong
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: djangocms
+      app: mong
   template:
     metadata:
       labels:
-        app: djangocms
+        app: mong
     spec:
       containers:
-      - name: djangocms
-        image: eu.gcr.io/premium-origin-233501/djangocms
+      - name: mong
+        image: eu.gcr.io/premium-origin-233501/liv2mongbot
         ports:
-        - containerPort: 8000
+        - containerPort: 80
           protocol: TCP
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: djangocms-service
+  name: mong-service-v2
   labels:
-    app: djangocms
-  namespace: djangocms
+    app: mong
+  namespace: mong
 spec:
   selector:
-    app: djangocms
+    app: mong
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 8000
+      targetPort: 80
   type: NodePort
