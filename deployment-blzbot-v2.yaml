@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blzbot-deployment-v2
+  namespace: blz-bot-v2
+  labels:
+    app: blzbot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: blzbot
+  template:
+    metadata:
+      labels:
+        app: blzbot
+    spec:
+      containers:
+      - name: blzbot
+        image: eu.gcr.io/premium-origin-233501/blz-bot-v2
+        ports:
+        - containerPort: 80
+          protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: blzbot-service-v2
+  labels:
+    app: blzbot
+  namespace: blz-bot-v2
+spec:
+  selector:
+    app: blzbot
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: NodePort
